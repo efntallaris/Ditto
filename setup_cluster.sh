@@ -2,8 +2,8 @@
 
 # === EDIT THESE VARIABLES ===
 USER="entall"
-NODE0="node-0"
-NODE1="node-1"
+NODE0="node0"
+NODE1="node1"
 ALL_NODES=("node0" "node1" "node2" "node3" "node4" "node5")
 NODE0_IP="10.10.1.1"  # Change to actual IP
 NODE1_IP="10.10.1.2"  # Change to actual IP
@@ -22,32 +22,32 @@ for node in "${ALL_NODES[@]}"; do
 done
 
 echo "== Step 4: Configure Memcached on Node-0"
-sudo ssh "$NODE0" "
+sudo ssh -o StrictHostKeyChecking=no "$NODE0" "
   sudo sed -i 's/^-l .*/-l $NODE0_IP/' /etc/memcached.conf &&
   echo -e '-I 128m\n-m 2048' | sudo tee -a /etc/memcached.conf &&
   sudo service memcached restart
 "
 
-echo "== Step 5: Modify experiment configs on all nodes"
-for node in "${ALL_NODES[@]}"; do
-  sudo ssh "$node" "
-    cd $DITTO_DIR/experiments &&
-    python modify_config.py memory_ip_list=[\"$NODE1_IP\"] &&
-    python modify_config.py ib_dev_id=$IB_DEV_ID &&
-    python modify_config.py conn_type=\"$CONN_TYPE\" &&
-    python modify_config.py ib_gid_idx=$IB_GID_IDX
-  "
-done
+# echo "== Step 5: Modify experiment configs on all nodes"
+# for node in "${ALL_NODES[@]}"; do
+#   sudo ssh -o StrictHostKeyChecking=no "$node" "
+#     cd $DITTO_DIR/experiments &&
+#     python modify_config.py memory_ip_list=[\"$NODE1_IP\"] &&
+#     python modify_config.py ib_dev_id=$IB_DEV_ID &&
+#     python modify_config.py conn_type=\"$CONN_TYPE\" &&
+#     python modify_config.py ib_gid_idx=$IB_GID_IDX
+#   "
+# done
 
-echo "== Step 6: Update shell_settings.sh on all nodes"
-for node in "${ALL_NODES[@]}"; do
-  sudo ssh "$node" "
-    sed -i \"s/^memcached_ip=.*/memcached_ip=$NODE0_IP/\" $DITTO_DIR/experiments/scripts/shell_settings.sh
-  "
-done
+# echo "== Step 6: Update shell_settings.sh on all nodes"
+# for node in "${ALL_NODES[@]}"; do
+#   sudo ssh -o StrictHostKeyChecking=no "$node" "
+#     sed -i \"s/^memcached_ip=.*/memcached_ip=$NODE0_IP/\" $DITTO_DIR/experiments/scripts/shell_settings.sh
+#   "
+# done
 
-echo "== Step 7: Enable hugepages on Node-1"
-sudo ssh "$NODE1" "echo 10240 | sudo tee /proc/sys/vm/nr_hugepages"
+# echo "== Step 7: Enable hugepages on Node-1"
+# sudo ssh -o StrictHostKeyChecking=no "$NODE1" "echo 10240 | sudo tee /proc/sys/vm/nr_hugepages"
 
 # echo "== Step 9: Download workload on Node-0"
 # sudo ssh "$NODE0" "
