@@ -14,7 +14,7 @@ DITTO_DIR="~/Ditto"
 
 echo "== Step 1: Install dependencies on all nodes"
 for node in "${ALL_NODES[@]}"; do
-  sudo ssh "$node" "
+  sudo ssh -o StrictHostKeyChecking=no "$node" "
     cd $DITTO_DIR/scripts &&
     chmod +x setup-env.sh
     tmux new -d -s setup_env './setup-env.sh'
