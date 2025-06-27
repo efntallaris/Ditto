@@ -3,16 +3,16 @@
 mode="$1"
 ubuntu_version=$(lsb_release -r -s)
 
-if [ $ubuntu_version == "18.04" ]; then
-  wget https://content.mellanox.com/ofed/MLNX_OFED-4.9-5.1.0.0/MLNX_OFED_LINUX-4.9-5.1.0.0-ubuntu18.04-x86_64.tgz
-  mv MLNX_OFED_LINUX-4.9-5.1.0.0-ubuntu18.04-x86_64.tgz ofed.tgz
-elif [ $ubuntu_version == "20.04" ]; then
-  wget https://content.mellanox.com/ofed/MLNX_OFED-4.9-5.1.0.0/MLNX_OFED_LINUX-4.9-5.1.0.0-ubuntu20.04-x86_64.tgz
-  mv MLNX_OFED_LINUX-4.9-5.1.0.0-ubuntu20.04-x86_64.tgz ofed.tgz
-else
-  echo "Wrong ubuntu distribution for $mode!"
-  exit 0
-fi
+# if [ $ubuntu_version == "18.04" ]; then
+#   wget https://content.mellanox.com/ofed/MLNX_OFED-4.9-5.1.0.0/MLNX_OFED_LINUX-4.9-5.1.0.0-ubuntu18.04-x86_64.tgz
+#   mv MLNX_OFED_LINUX-4.9-5.1.0.0-ubuntu18.04-x86_64.tgz ofed.tgz
+# elif [ $ubuntu_version == "20.04" ]; then
+#   wget https://content.mellanox.com/ofed/MLNX_OFED-4.9-5.1.0.0/MLNX_OFED_LINUX-4.9-5.1.0.0-ubuntu20.04-x86_64.tgz
+#   mv MLNX_OFED_LINUX-4.9-5.1.0.0-ubuntu20.04-x86_64.tgz ofed.tgz
+# else
+#   echo "Wrong ubuntu distribution for $mode!"
+#   exit 0
+# fi
 echo $mode $ubuntu_version $ofed_fid
 
 sudo apt update -y
