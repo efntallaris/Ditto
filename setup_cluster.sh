@@ -4,7 +4,7 @@
 USER="entall"
 NODE0="node-0"
 NODE1="node-1"
-ALL_NODES=("node0" "node1" "node2" "node3" "node4" "node5" "node6" "node7" "node8" "node9")
+ALL_NODES=("node0" "node1" "node2" "node3" "node4" "node5")
 NODE0_IP="10.10.1.1"  # Change to actual IP
 NODE1_IP="10.10.1.2"  # Change to actual IP
 IB_DEV_ID=3
