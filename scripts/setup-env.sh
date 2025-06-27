@@ -122,7 +122,7 @@ conda init zsh
 sudo chsh $USER -s /bin/zsh
 
 # mkdir build
-cd ~/Ditto
+sudo cd /root/Ditto
 if [ ! -d "build" ]; then
   mkdir build
 fi
