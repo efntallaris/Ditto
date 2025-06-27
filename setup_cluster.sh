@@ -10,7 +10,7 @@ NODE1_IP="10.10.1.2"  # Change to actual IP
 IB_DEV_ID=3
 IB_GID_IDX=3
 CONN_TYPE="ROCE"
-DITTO_DIR="~/Ditto"
+DITTO_DIR="/root/Ditto"
 
 # echo "== Step 1: Install dependencies on all nodes"
 # for node in "${ALL_NODES[@]}"; do
