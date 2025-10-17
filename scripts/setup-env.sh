@@ -148,3 +148,8 @@ cd ~/Ditto
 if [ ! -d "build" ]; then
   mkdir build
 fi
+
+
+sudo apt-get install memcached -y
+sudo apt-get install pip -y
+sudo apt-get install -y libboost-all-dev build-essential cmake
