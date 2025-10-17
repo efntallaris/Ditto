@@ -166,4 +166,10 @@ else
   echo "Note: $PROJECT_DIR does not exist; skipping build dir creation."
 fi
 
+
+sudo apt-get install -y libboost-all-dev build-essential cmake
+sudo apt-get install -y apt
+sudo apt-get install -y memcached
+python -m pip install gdrive
+
 echo "✅ All done."
