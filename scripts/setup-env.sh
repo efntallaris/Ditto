@@ -61,8 +61,8 @@ cd - >/dev/null
 
 # ---------- Python utilities ----------
 # Use conda's pip explicitly to avoid mixing system pip
-"$HOME/anaconda3/bin/pip" install -U pip
-"$HOME/anaconda3/bin/pip" install gdown fabric
+python3 -m pip install gdown
+python3 -m pip install fabric
 
 # ---------- Memcached / Boost (as in your script) ----------
 sudo apt install -y libmemcached-dev memcached libboost-all-dev
