@@ -62,7 +62,7 @@ cd - >/dev/null
 # ---------- Python utilities ----------
 # Use conda's pip explicitly to avoid mixing system pip
 "$HOME/anaconda3/bin/pip" install -U pip
-"$HOME/anaconda3/bin/pip" install gdown python-memcached fabric
+"$HOME/anaconda3/bin/pip" install gdown fabric
 
 # ---------- Memcached / Boost (as in your script) ----------
 sudo apt install -y libmemcached-dev memcached libboost-all-dev
@@ -135,7 +135,6 @@ if [ -d "/usr/src/gtest" ]; then
   cd /usr/src/gtest
   sudo cmake .
   sudo make -j"$(nproc)"
-  sudo make install
   cd - >/dev/null
 fi
 
@@ -180,9 +179,9 @@ sudo apt-get install -y \
   libmemcached-dev \
   libgtest-dev \
   memcached \
-  python3-memcached \
   redis-server \
-  libhiredis-dev
+  libhiredis-dev \
+  pip
 
 echo "Installing redis++ (redis-plus-plus)..."
 # Redis++ depends on hiredis, so we build from source
