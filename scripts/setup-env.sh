@@ -59,10 +59,6 @@ conda activate base
 
 cd - >/dev/null
 
-# ---------- Python utilities ----------
-# Use conda's pip explicitly to avoid mixing system pip
-python3 -m pip install gdown
-python3 -m pip install fabric
 
 # ---------- Memcached / Boost (as in your script) ----------
 sudo apt install -y libmemcached-dev memcached libboost-all-dev
@@ -172,6 +168,12 @@ sudo apt-get install -y memcached
 python -m pip install gdrive
 
 
+# ---------- Python utilities ----------
+python3 -m pip install gdown
+cd /root/Ditto/experiments/scripts
+python3 -m pip install fabric
+python3 kick-the-tires.py 256 ycsbc
+
 echo "Installing core dependencies..."
 sudo apt-get install -y \
   build-essential \
@@ -197,5 +199,15 @@ make -j$(nproc)
 sudo make install
 
 
+if [[ "$HOSTNAME" == *"node0"* ]]; then
+  echo "This node contains 'node0'"
+  cd /root/Ditto/experiments/workloads
+  ./download_all.sh
+  python3 -m http.server 8000 &
+  pkill -f "python3 -m http.server"
+
+else
+  echo "This node does NOT contain 'node0'"
+fi
 
 echo "✅ All done."
