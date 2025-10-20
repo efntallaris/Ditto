@@ -172,4 +172,31 @@ sudo apt-get install -y apt
 sudo apt-get install -y memcached
 python -m pip install gdrive
 
+
+echo "Installing core dependencies..."
+sudo apt-get install -y \
+  build-essential \
+  cmake \
+  libmemcached-dev \
+  libgtest-dev \
+  memcached \
+  python3-memcached \
+  redis-server \
+  libhiredis-dev
+
+echo "Installing redis++ (redis-plus-plus)..."
+# Redis++ depends on hiredis, so we build from source
+TMP_DIR=$(mktemp -d)
+cd "$TMP_DIR"
+
+git clone https://github.com/sewenew/redis-plus-plus.git
+cd redis-plus-plus
+
+mkdir -p build && cd build
+cmake -DREDIS_PLUS_PLUS_CXX_STANDARD=17 ..
+make -j$(nproc)
+sudo make install
+
+
+
 echo "✅ All done."
