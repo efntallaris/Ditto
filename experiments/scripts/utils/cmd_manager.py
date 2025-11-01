@@ -1,7 +1,7 @@
 from fabric import Connection
 
-env_cmd = 'source ~/.zshrc'
-
+# env_cmd = 'source ~/.zshrc'
+env_cmd = ''
 
 class CMDManager(object):
     def __init__(self, cluster_ips: list):
