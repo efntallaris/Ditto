@@ -203,7 +203,7 @@ void* worker(void* _args) {
   json trans_res;
   trans_res["ops_cont"] = json(ops_list);
   trans_res["lat_map"] = json(lat_map);
-  printf("itemsize: %d\n", strlen(trans_res.dump().c_str()) / 1024);
+  printf("itemsize: %zu\n", strlen(trans_res.dump().c_str()) / 1024);
   con_client.memcached_put_result((void*)trans_res.dump().c_str(),
                                   strlen(trans_res.dump().c_str()), args->cid);
   // save file to local
