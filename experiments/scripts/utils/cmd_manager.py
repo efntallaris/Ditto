@@ -20,7 +20,7 @@ class CMDManager(object):
         prom_list = []
         for id in node_ids:
             c = self._conn_list[id]
-            prom = c.run(f'{env_cmd} && {cmd}', asynchronous=True)
+            prom = c.run(f'{env_cmd} && {cmd}', asynchronous=True, warn=True)
             prom_list.append(prom)
         for prom in prom_list:
             try:
